@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('interactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->enum('tipo_interaccion', ['Llamada', 'Visita', 'WhatsApp']);
+            $table->text('observaciones')->nullable();
+            $table->date('fecha_seguimiento');
             $table->timestamps();
         });
     }
